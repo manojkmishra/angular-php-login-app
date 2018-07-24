@@ -1,19 +1,19 @@
 <?php
 
-//session_start();
+session_start();
 
 $_POST = json_decode(file_get_contents('php://input'), true);
 
 if(isset($_POST) && !empty($_POST)) 
 {  $username = $_POST['username'];  $password = $_POST['password'];
    if($username == 'admin' && $password == 'admin') 
-     {   //$_SESSION['user'] = 'admin';
+     {   $_SESSION['user'] = 'admin';
     ?>
-         { "success": true, "secret": "This is the secret no one knows but the admin" }
+         { "success": true, "secret": "This is the secret no one knows but the admin [auth.php]" }
        <?php
   } else {
     ?>
-{ "success": false,  "message": "Invalid credentials" }
+{ "success": false,  "message": "Invalid credentials [auth.php]" }
     <?php
   }
 } else {
@@ -21,7 +21,7 @@ if(isset($_POST) && !empty($_POST))
   ?>
 {
   "success": false,
-  "message": "Only POST access accepted"
+  "message": "Only POST access accepted [auth.php]"
 }
   <?php
 }
