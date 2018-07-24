@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth.service' ;
+import { AuthGuard } from './auth.guard';
 
 
 @NgModule({
@@ -16,11 +17,11 @@ import { AuthService } from './auth.service' ;
   imports: [BrowserModule, HttpClientModule,
             RouterModule.forRoot([
                                     { path: 'login', component: LoginComponent },
-                                    { path: 'admin', component: AdminComponent, },
+                                    { path: 'admin', component: AdminComponent,   canActivate: [AuthGuard]},
                                     { path: '', component: HomeComponent }
                                 ])
           ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
