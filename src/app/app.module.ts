@@ -8,6 +8,8 @@ import { HomeComponent } from './home/home.component';
 
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './auth.service' ;
+
 
 @NgModule({
   declarations: [ AppComponent, LoginComponent, AdminComponent, HomeComponent ],
@@ -18,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
                                     { path: '', component: HomeComponent }
                                 ])
           ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

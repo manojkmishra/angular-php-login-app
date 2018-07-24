@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
+interface MyData { success: boolean ; message: string ; }
+
+@Injectable({ providedIn: 'root'})
 export class AuthService {
-
-  constructor() { }
-  getUserDetails() { }
+  constructor(private http: HttpClient) { }
+  getUserDetails(username, password) {
+    // post these details to API server return user info if correct
+    return this.http.post<MyData>('/api/auth.php', { username, password }) ;
+    // .subscribe(data => { console.log('/auth.service.ts--data=', data); }) ;
+  }
 }
